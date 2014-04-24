@@ -44,40 +44,40 @@
 	Neg Input	   2B	   F	LDAD	Out2		N	2	Y
 		   2C	   1				Y	0	N
 		   2D	   B				Y	0	N
-		   2E	   6	ADDI	1		N	1	N
-		   2F	   1				Y	0	N
-		   30	   A	JZ	Out 1 sub		N	2	N
-		   31	   7				Y	0	N
-		   32	   3				Y	0	N
-		   33	   6	ADDI	E		N	1	N
-		   34	   E				Y	0	N
-		   35	   9	JMP	Output 2		N	2	Y
-		   36	   9				Y	0	N
+		   2E	   A	JZ	Out 1 sub		N	2	N
+		   2F	   6				Y	0	N
+		   30	   3				Y	0	N
+	Out 2 return	   31	   6	ADDI	F		N	1	N
+		   32	   F				Y	0	N
+		   33	   9	JMP	Output 2		N	2	Y
+		   34	   9				Y	0	N
+		   35	   0				Y	0	N
+	Out 1 sub	   36	   F	LDAD	Out1		N	2	Y
 		   37	   0				Y	0	N
-	Out 1 sub	   38	   F	LDAD	Out1		N	2	Y
-		   39	   0				Y	0	N
+		   38	   B				Y	0	N
+		   39	   A	JZ	Out 1 at 0		N	2	Y
 		   3A	   B				Y	0	N
-		   3B	   6	ADDI	F		N	1	Y
-		   3C	   F				Y	0	N
-		   3D	   9	JMP	Output 1		N	2	Y
-		   3E	   2				Y	0	N
-		   3F	   0				Y	0	N
-		   40	   0	NOP			N	0	Y
-		   41	   0	NOP			N	0	Y
-		   42	   0	NOP			N	0	Y
-		   43	   0	NOP			N	0	Y
-		   44	   0	NOP			N	0	Y
-		   45	   0	NOP			N	0	Y
-		   46	   0	NOP			N	0	Y
-		   47	   0	NOP			N	0	Y
-		   48	   0	NOP			N	0	Y
-		   49	   0	NOP			N	0	Y
-		   4A	   0	NOP			N	0	Y
-		   4B	   0	NOP			N	0	Y
-		   4C	   0	NOP			N	0	Y
-		   4D	   0	NOP			N	0	Y
-		   4E	   0	NOP			N	0	Y
-		   4F	   0	NOP			N	0	Y
+		   3B	   4				Y	0	N
+	Out 1 return	   3C	   6	ADDI	F		N	1	Y
+		   3D	   F				Y	0	N
+		   3E	   4	OUT	1		N	1	Y
+		   3F	   1				Y	0	N
+		   40	   D	STA	Out1		N	2	Y
+		   41	   0				Y	0	N
+		   42	   B				Y	0	N
+		   43	   F	LDAD	Out2		N	2	N
+		   44	   1				Y	0	N
+		   45	   B				Y	0	N
+		   46	   6	ADDI	A		N	1	N
+		   47	   A				Y	0	N
+		   48	   9	JMP	Out 2 return		N	2	Y
+		   49	   1				Y	0	N
+		   4A	   3				Y	0	N
+	Out 1 at 0	   4B	   6	ADDI	A		N	1	Y
+		   4C	   A				Y	0	N
+		   4D	   9	JMP	Out 1 return		N	2	Y
+		   4E	   C				Y	0	N
+		   4F	   3				Y	0	N
 		   50	   0	NOP			N	0	Y
 		   51	   0	NOP			N	0	Y
 		   52	   0	NOP			N	0	Y
@@ -174,8 +174,8 @@
 		   AD	   0	NOP			N	0	Y
 		   AE	   0	NOP			N	0	Y
 		   AF	   0	NOP			N	0	Y
-	Out1	   B0	   C	
-	Out2	   B1	   F	
+	Out1	   B0	   7	
+	Out2	   B1	   0	
 		   B2	   0	
 		   B3	   0	
 		   B4	   0	
