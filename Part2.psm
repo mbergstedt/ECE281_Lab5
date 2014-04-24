@@ -20,8 +20,8 @@
 		   13	   F	LDAD	Out2		N	2	N
 		   14	   1				Y	0	N
 		   15	   B				Y	0	N
-		   16	   6	ADDI	6		N	1	N
-		   17	   6				Y	0	N
+		   16	   6	ADDI	7	makes next after 9 look like 0	N	1	N
+		   17	   7				Y	0	N
 		   18	   A	JZ	Intermediary		N	2	Y
 		   19	   2				Y	0	N
 		   1A	   2				Y	0	N
@@ -174,7 +174,7 @@
 		   AD	   0	NOP			N	0	N
 		   AE	   0	NOP			N	0	N
 		   AF	   0	NOP			N	0	N
-	Out1	   B0	   0	
+	Out1	   B0	   1	
 	Out2	   B1	   9	
 		   B2	   0	
 		   B3	   0	
