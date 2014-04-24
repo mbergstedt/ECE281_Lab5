@@ -1,46 +1,46 @@
-	Start	   00	   7	LDAI	F		N	1	Y
-		   01	   F				Y	0	N
-		   02	   D	STA	Out1		N	2	Y
-		   03	   0				Y	0	N
-		   04	   B				Y	0	N
-	Out 1 add	   05	   7	LDAI	1		N	1	N
-		   06	   1				Y	0	N
-		   07	   E	ADDD	Out1		N	2	N
+	Start	   00	   7	LDAI	0		N	1	Y
+		   01	   0				Y	0	N
+	Output 1	   02	   4	OUT	1		N	1	Y
+		   03	   1				Y	0	N
+		   04	   D	STA	Out1		N	2	Y
+		   05	   0				Y	0	N
+		   06	   B				Y	0	N
+		   07	   7	LDAI	0	reset for output 2	N	1	Y
 		   08	   0				Y	0	N
-		   09	   B				Y	0	N
-		   0A	   4	OUT	1		N	1	Y
-		   0B	   1				Y	0	N
-		   0C	   7	LDAI	0		N	1	Y
-		   0D	   0				Y	0	N
-	Normal Output	   0E	   4	OUT	2		N	1	Y
-		   0F	   2				Y	0	N
-		   10	   5	IN	0		N	1	Y
-		   11	   0				Y	0	N
-		   12	   B	JN	Other Address		N	2	Y
-		   13	   9				Y	0	N
-		   14	   4				Y	0	N
-		   15	   6	ADDI	1		N	1	Y
-		   16	   1				Y	0	N
-		   17	   A	JZ	Out 1 add		N	2	Y
-		   18	   5				Y	0	N
-		   19	   0				Y	0	N
-		   1A	   9	JMP	Normal Output		N	2	Y
-		   1B	   E				Y	0	N
-		   1C	   0				Y	0	N
-		   1D	   0	NOP			N	0	Y
-		   1E	   0	NOP			N	0	Y
-		   1F	   0	NOP			N	0	Y
-		   20	   0	NOP			N	0	Y
-		   21	   0	NOP			N	0	Y
-		   22	   0	NOP			N	0	Y
-		   23	   0	NOP			N	0	Y
-		   24	   0	NOP			N	0	Y
-		   25	   0	NOP			N	0	Y
-		   26	   0	NOP			N	0	Y
-		   27	   0	NOP			N	0	Y
-		   28	   0	NOP			N	0	Y
-		   29	   0	NOP			N	0	Y
-		   2A	   0	NOP			N	0	Y
+	Output 2	   09	   4	OUT	2		N	1	Y
+		   0A	   2				Y	0	N
+		   0B	   D	STA	Out2		N	2	N
+		   0C	   1				Y	0	N
+		   0D	   B				Y	0	N
+		   0E	   5	IN	0		N	1	Y
+		   0F	   0				Y	0	N
+		   10	   B	JN	Other Address		N	2	Y
+		   11	   B				Y	0	N
+		   12	   4				Y	0	N
+		   13	   F	LDAD	Out2		N	2	N
+		   14	   1				Y	0	N
+		   15	   B				Y	0	N
+		   16	   6	ADDI	6		N	1	N
+		   17	   6				Y	0	N
+		   18	   A	JZ	Intermediary		N	2	Y
+		   19	   2				Y	0	N
+		   1A	   2				Y	0	N
+		   1B	   7	LDAI	1		N	1	Y
+		   1C	   1				Y	0	N
+		   1D	   E	ADDD	Out2		N	2	N
+		   1E	   1				Y	0	N
+		   1F	   B				Y	0	N
+		   20	   9	JMP	Output 2		N	2	Y
+		   21	   9				Y	0	N
+		   22	   0				Y	0	N
+	Intermediary	   23	   7	LDAI	1	include this to not have this part up top	N	1	Y
+		   24	   1				Y	0	N
+		   25	   E	ADDD	Out1		N	2	Y
+		   26	   0				Y	0	N
+		   27	   B				Y	0	N
+		   28	   9	JMP	Output 1		N	2	Y
+		   29	   2				Y	0	N
+		   2A	   0				Y	0	N
 		   2B	   0	NOP			N	0	Y
 		   2C	   0	NOP			N	0	Y
 		   2D	   0	NOP			N	0	Y
@@ -71,10 +71,10 @@
 		   46	   0	NOP			N	0	Y
 		   47	   0	NOP			N	0	Y
 		   48	   0	NOP			N	0	Y
-	Other Address	   49	   0	NOP			N	0	Y
+		   49	   0	NOP			N	0	Y
 		   4A	   0	NOP			N	0	Y
 		   4B	   0	NOP			N	0	Y
-		   4C	   0	NOP			N	0	Y
+	Other Address	   4C	   0	NOP			N	0	Y
 		   4D	   0	NOP			N	0	Y
 		   4E	   0	NOP			N	0	Y
 		   4F	   0	NOP			N	0	Y
@@ -170,12 +170,12 @@
 		   A9	   0	NOP			N	0	Y
 		   AA	   0	NOP			N	0	Y
 		   AB	   0	NOP			N	0	Y
-		   AC	   0	NOP			N	0	Y
-		   AD	   0	NOP			N	0	Y
-		   AE	   0	NOP			N	0	Y
-		   AF	   0	NOP			N	0	Y
-	Out1	   B0	   F	
-	Out2	   B1	   0	
+		   AC	   0	NOP			N	0	N
+		   AD	   0	NOP			N	0	N
+		   AE	   0	NOP			N	0	N
+		   AF	   0	NOP			N	0	N
+	Out1	   B0	   0	
+	Out2	   B1	   9	
 		   B2	   0	
 		   B3	   0	
 		   B4	   0	
