@@ -1,18 +1,18 @@
-	Start	   00	   7	LDAI	0		N	1	Y
+	Start	   00	   7	LDAI	0	start with 0's in program	N	1	Y
 		   01	   0				Y	0	N
 	Output 1	   02	   4	OUT	1		N	1	Y
 		   03	   1				Y	0	N
-		   04	   D	STA	Out1		N	2	Y
+		   04	   D	STA	Out1	store value of out 1 for use in later operations	N	2	Y
 		   05	   0				Y	0	N
 		   06	   B				Y	0	N
 		   07	   7	LDAI	0	reset for output 2	N	1	Y
 		   08	   0				Y	0	N
 	Output 2	   09	   4	OUT	2		N	1	Y
 		   0A	   2				Y	0	N
-		   0B	   D	STA	Out2		N	2	N
+		   0B	   D	STA	Out2	store value of out 2 for use in later operations	N	2	N
 		   0C	   1				Y	0	N
 		   0D	   B				Y	0	N
-		   0E	   5	IN	0		N	1	Y
+		   0E	   5	IN	0	check input	N	1	Y
 		   0F	   0				Y	0	N
 		   10	   B	JN	Neg Input	jumps for values between 8-F	N	2	Y
 		   11	   0				Y	0	N
@@ -22,23 +22,23 @@
 		   15	   B				Y	0	N
 		   16	   6	ADDI	7	makes next after 9 look like 0	N	1	N
 		   17	   7				Y	0	N
-		   18	   A	JZ	Out 1 add		N	2	Y
+		   18	   A	JZ	Out 1 add	if next value in out 2 will be 0	N	2	Y
 		   19	   3				Y	0	N
 		   1A	   2				Y	0	N
-		   1B	   7	LDAI	1		N	1	Y
+		   1B	   7	LDAI	1	used to increment out 2 by one	N	1	Y
 		   1C	   1				Y	0	N
-		   1D	   E	ADDD	Out2		N	2	N
+		   1D	   E	ADDD	Out2	could have used ADDI A like below instead of both of these	N	2	N
 		   1E	   1				Y	0	N
 		   1F	   B				Y	0	N
-		   20	   9	JMP	Output 2		N	2	Y
+		   20	   9	JMP	Output 2	just return to out 2 to only adjust out 2 for now	N	2	Y
 		   21	   9				Y	0	N
 		   22	   0				Y	0	N
-	Out 1 add	   23	   F	LDAD	Out1	include this to not have this part up top	N	2	Y
+	Out 1 add	   23	   F	LDAD	Out1	increments the value in out 1	N	2	Y
 		   24	   0				Y	0	N
 		   25	   B				Y	0	N
 		   26	   6	ADDI	7	if out1 is at 9 loads value of 0	N	1	Y
 		   27	   7				Y	0	N
-		   28	   A	JZ	Output 1		N	2	N
+		   28	   A	JZ	Output 1	next value in out 1 should be 0 so return to the top of the program	N	2	N
 		   29	   2				Y	0	N
 		   2A	   0				Y	0	N
 		   2B	   6	ADDI	A	A acts like -6, so returns acc to one greater than out1	N	1	N
@@ -46,44 +46,44 @@
 		   2D	   9	JMP	Output 1		N	2	Y
 		   2E	   2				Y	0	N
 		   2F	   0				Y	0	N
-	Neg Input	   30	   F	LDAD	Out2		N	2	Y
+	Neg Input	   30	   F	LDAD	Out2	jumps here if input value is 8-F	N	2	Y
 		   31	   1				Y	0	N
 		   32	   B				Y	0	N
-		   33	   A	JZ	Out 1 sub		N	2	N
+		   33	   A	JZ	Out 1 sub	if the value in out 2 is 0 jump to change out 1	N	2	N
 		   34	   B				Y	0	N
 		   35	   3				Y	0	N
-	Out 2 return	   36	   6	ADDI	F		N	1	N
+	Out 2 return	   36	   6	ADDI	F	reduces value by 1	N	1	N
 		   37	   F				Y	0	N
 		   38	   9	JMP	Output 2		N	2	Y
 		   39	   9				Y	0	N
 		   3A	   0				Y	0	N
-	Out 1 sub	   3B	   F	LDAD	Out1		N	2	Y
+	Out 1 sub	   3B	   F	LDAD	Out1	decrements the value in out 1	N	2	Y
 		   3C	   0				Y	0	N
 		   3D	   B				Y	0	N
-		   3E	   A	JZ	Out 1 at 0		N	2	Y
+		   3E	   A	JZ	Out 1 at 0	jumps if out 1 is already 0 to roll over	N	2	Y
 		   3F	   0				Y	0	N
 		   40	   5				Y	0	N
-	Out 1 return	   41	   6	ADDI	F		N	1	Y
+	Out 1 return	   41	   6	ADDI	F	reduces the value by 1	N	1	Y
 		   42	   F				Y	0	N
-		   43	   4	OUT	1		N	1	Y
+		   43	   4	OUT	1	outputs to port 1	N	1	Y
 		   44	   1				Y	0	N
-		   45	   D	STA	Out1		N	2	Y
+		   45	   D	STA	Out1	update the value that is stored in output port 1	N	2	Y
 		   46	   0				Y	0	N
 		   47	   B				Y	0	N
-		   48	   F	LDAD	Out2		N	2	N
+		   48	   F	LDAD	Out2	loads value in out 2	N	2	N
 		   49	   1				Y	0	N
 		   4A	   B				Y	0	N
-		   4B	   6	ADDI	A		N	1	N
+		   4B	   6	ADDI	A	value should be at 0 already, so returns it to A for subtraction back to 9	N	1	N
 		   4C	   A				Y	0	N
-		   4D	   9	JMP	Out 2 return		N	2	Y
+		   4D	   9	JMP	Out 2 return	return to the out 2 subtract by one	N	2	Y
 		   4E	   6				Y	0	N
 		   4F	   3				Y	0	N
-	Out 1 at 0	   50	   6	ADDI	A		N	1	Y
+	Out 1 at 0	   50	   6	ADDI	A	sets value to A for reset to 9 with the out 1 subtract	N	1	Y
 		   51	   A				Y	0	N
-		   52	   9	JMP	Out 1 return		N	2	Y
+		   52	   9	JMP	Out 1 return	return to the out 1 subtract	N	2	Y
 		   53	   1				Y	0	N
 		   54	   4				Y	0	N
-	Out 1 at 9	   55	   0	NOP			N	0	Y
+		   55	   0	NOP			N	0	Y
 		   56	   0	NOP			N	0	Y
 		   57	   0	NOP			N	0	Y
 		   58	   0	NOP			N	0	Y
