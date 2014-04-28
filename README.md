@@ -37,4 +37,10 @@ jump command.
 ####Part 2
 1) When the state is in "FETCH," the IRLd and PCLd have a value of 1, meaning they are on, while the ACCLd has a
 value of 0, meaning it is off.
-2) 
+2) When the state is Decode LoAddr and the IR contains "OUT," MARLoLd and PCLd are asserted, and the next state
+will be Direct IO Execute.
+3) R/W', MemSel, and IOSel are sent from the datapath to the controller.
+4) It is important that ACCLd be active during the execute state for the ADDI instruction so that the value in the
+accumulator can be updated to have added the value from the instruction.
+5) To include a SUBI instruction, you could include a multiplexer that choses to add the current value or the
+negative of that value.
